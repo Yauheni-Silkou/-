@@ -1,0 +1,82 @@
+﻿<Page x:Class="IMS_01.Lab_2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IMS_01"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Lab_2">
+    <Page.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="Blue"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem Header="Ввод данных">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="a" Grid.Row="1"/>
+                    <Label Content="b" Grid.Row="2"/>
+                    <Label Content="Коэффициент K" Grid.Row="3"/>
+                    <Label Content="Коэффициент C" Grid.Row="4"/>
+                    <Label Content="Количество" Grid.Row="5"/>
+                    <TextBox Name="tbA" Text="1.0" Grid.Row="1"/>
+                    <TextBox Name="tbB" Text="9.7" Grid.Row="2"/>
+                    <TextBox Name="tbK" Text="4.1" Grid.Row="3"/>
+                    <TextBox Name="tbC" Text="9.4" Grid.Row="4"/>
+                    <TextBox Name="tbN" Text="500" Grid.Row="5"/>
+                    <Button Name="calcButton"
+                        Content="Вычислить" Margin="0, 0, 10, 0" Height="25"
+                            Width="120" HorizontalAlignment="Right"
+                            Grid.Column="1" Grid.Row="6" Click="calcButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Результаты">
+                <StackPanel>
+                    <TextBlock Name="textBlock"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Таблица">
+                <DataGrid Name="dataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                          CanUserDeleteRows="False" CanUserReorderColumns="False"
+                          CanUserResizeColumns="False" CanUserResizeRows="False"
+                          IsReadOnly="True" HorizontalScrollBarVisibility="Visible"
+                          VerticalScrollBarVisibility="Visible" ColumnWidth="*"
+                          SelectionMode="Single" RowHeaderWidth="0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="i" Binding="{Binding Path=I}" Width="2*" MinWidth="40"/>
+                        <DataGridTextColumn Header="x" Binding="{Binding Path=X}" Width="3*" MinWidth="60"/>
+                        <DataGridTextColumn Header="y" Binding="{Binding Path=Y}" Width="3*" MinWidth="60"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="График">
+                <WindowsFormsHost Name="windowsFormsHost"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>
